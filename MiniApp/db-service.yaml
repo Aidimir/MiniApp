@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: db
+  name: db
+spec:
+  ports:
+    - name: "5545"
+      port: 5545
+      targetPort: 5545
+  type: LoadBalancer
+  selector:
+    io.kompose.service: db

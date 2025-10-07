@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.35.0 (9532ceef3)
+  labels:
+    io.kompose.service: workers
+  name: workers
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      io.kompose.service: workers
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.35.0 (9532ceef3)
+      labels:
+        io.kompose.service: workers
+    spec:
+      containers:
+        - env:
+            - name: ConnectionStrings__DefaultConnection
+              value: Host=db; Port=5545; Database=AbstractTasks; Username=AbstractTasks; Password=1qaz2wsx
+            - name: RabbitMQConnection__Host
+              value: rabbitmq
+            - name: RabbitMQConnection__Password
+              value: AbstractTasks
+            - name: RabbitMQConnection__Username
+              value: AbstractTasks
+          image: workers
+          imagePullPolicy: Never
+          name: workers
+      restartPolicy: Always
