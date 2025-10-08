@@ -1,6 +1,6 @@
 Для корректной загрузки вместе с подмодулем авторизации вместо обычного git clone нужно выполнить
 ```
-git clone --recurse-submodules https://github.com/Aidimir/MicroServicesTask3.git
+git clone --recurse-submodules https://github.com/Aidimir/MiniApp.git
 ```
 
 После клонирования репозитория нужно будет выполнить следующие команды, для запуска необходимых контейнеров kubernetes (все тестировалось на встроенном в Docker desktop kubernetes (настройки => kubernetes)). Команды выполняются из директории проекта и идут по порядку.
